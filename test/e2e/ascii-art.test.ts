@@ -55,12 +55,14 @@ test('E2E: Colored ASCII art content verification', async (t) => {
           minimax: /\\u001b\[38;5;203m/, // Coral/salmon red
           openrouter: /\\u001b\[38;5;43m/, // Teal
           ccrouter: /\\u001b\[38;5;39m/, // Sky blue
+          kimi: /\\u001b\[38;5;105m/, // Indigo/violet
         }
       : {
           zai: /\x1b\[38;5;220m/, // Gold
           minimax: /\x1b\[38;5;203m/, // Coral/salmon red
           openrouter: /\x1b\[38;5;43m/, // Teal
           ccrouter: /\x1b\[38;5;39m/, // Sky blue
+          kimi: /\x1b\[38;5;105m/, // Indigo/violet
         };
     /* eslint-enable no-control-regex */
 
@@ -76,6 +78,7 @@ test('E2E: Colored ASCII art content verification', async (t) => {
       minimax: ['███╗   ███╗', 'MiniMax-M2.1', 'AGI for All'],
       openrouter: ['██████╗ ██████╗', 'One API', 'Any Model'],
       ccrouter: ['██████╗ ██████╗██████╗', 'Claude Code Router', 'Any Model'],
+      kimi: ['██╗  ██╗██╗███╗   ███╗██╗', 'Kimi K2.5', 'Moonshot AI'],
     };
 
     for (const [providerKey, patterns] of Object.entries(asciiPatterns)) {

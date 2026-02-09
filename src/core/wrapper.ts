@@ -29,6 +29,11 @@ const C = {
   ccrSecondary: '\x1b[38;5;45m', // Bright cyan
   ccrAccent: '\x1b[38;5;33m', // Deep blue
   ccrDim: '\x1b[38;5;31m', // Muted blue
+  // Kimi: Indigo/Violet gradient (Moonshot AI)
+  kimiPrimary: '\x1b[38;5;105m', // Indigo/violet
+  kimiSecondary: '\x1b[38;5;141m', // Light violet
+  kimiAccent: '\x1b[38;5;99m', // Deep indigo
+  kimiDim: '\x1b[38;5;60m', // Muted indigo
   // Mirror: Silver/Chrome with electric blue
   mirPrimary: '\x1b[38;5;252m', // Silver/light gray
   mirSecondary: '\x1b[38;5;250m', // Platinum
@@ -98,6 +103,19 @@ const SPLASH_ART: SplashArt = {
     `${C.ccrSecondary}      Claude Code Router ${C.ccrDim}━${C.ccrSecondary} Any Model${C.reset}`,
     '',
   ],
+  kimi: [
+    '',
+    `${C.kimiPrimary}    ██╗  ██╗██╗███╗   ███╗██╗${C.reset}`,
+    `${C.kimiPrimary}    ██║ ██╔╝██║████╗ ████║██║${C.reset}`,
+    `${C.kimiSecondary}    █████╔╝ ██║██╔████╔██║██║${C.reset}`,
+    `${C.kimiSecondary}    ██╔═██╗ ██║██║╚██╔╝██║██║${C.reset}`,
+    `${C.kimiAccent}    ██║  ██╗██║██║ ╚═╝ ██║██║${C.reset}`,
+    `${C.kimiAccent}    ╚═╝  ╚═╝╚═╝╚═╝     ╚═╝╚═╝${C.reset}`,
+    '',
+    `${C.kimiDim}    ━━━━━━━━━━${C.kimiPrimary}◆${C.kimiDim}━━━━━━━━━━${C.reset}`,
+    `${C.kimiSecondary}      Kimi K2.5 ${C.kimiDim}━${C.kimiSecondary} Moonshot AI${C.reset}`,
+    '',
+  ],
   mirror: [
     '',
     `${C.mirPrimary}    ███╗   ███╗██╗██████╗ ██████╗  ██████╗ ██████╗${C.reset}`,
@@ -123,7 +141,7 @@ const SPLASH_ART: SplashArt = {
   ],
 };
 
-const KNOWN_SPLASH_STYLES = ['zai', 'minimax', 'openrouter', 'ccrouter', 'mirror'];
+const KNOWN_SPLASH_STYLES = ['zai', 'minimax', 'openrouter', 'ccrouter', 'kimi', 'mirror'];
 
 const buildWindowsWrapperScript = (opts: {
   configDir: string;
@@ -335,6 +353,12 @@ export const writeWrapper = (
     "        cat <<'CCMCCR'",
     ...SPLASH_ART.ccrouter,
     'CCMCCR',
+    '        __cc_show_label="0"',
+    '        ;;',
+    '      kimi)',
+    "        cat <<'CCMKIM'",
+    ...SPLASH_ART.kimi,
+    'CCMKIM',
     '        __cc_show_label="0"',
     '        ;;',
     '      mirror)',

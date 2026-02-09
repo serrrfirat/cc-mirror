@@ -116,6 +116,24 @@ const PROVIDERS: Record<string, ProviderTemplate> = {
     requiresModelMapping: false, // Models configured in ~/.claude-code-router/config.json
     credentialOptional: true, // No API key needed - CCRouter handles auth
   },
+  kimi: {
+    key: 'kimi',
+    label: 'Kimi Cloud',
+    description: 'Kimi K2.5 via Moonshot AI',
+    baseUrl: 'https://api.moonshot.ai/anthropic',
+    env: {
+      API_TIMEOUT_MS: DEFAULT_TIMEOUT_MS,
+      ANTHROPIC_MODEL: 'kimi-k2.5',
+      ANTHROPIC_SMALL_FAST_MODEL: 'kimi-k2.5',
+      ANTHROPIC_DEFAULT_SONNET_MODEL: 'kimi-k2.5',
+      ANTHROPIC_DEFAULT_OPUS_MODEL: 'kimi-k2.5',
+      ANTHROPIC_DEFAULT_HAIKU_MODEL: 'kimi-k2.5',
+      CC_MIRROR_SPLASH: 1,
+      CC_MIRROR_PROVIDER_LABEL: 'Kimi Cloud',
+      CC_MIRROR_SPLASH_STYLE: 'kimi',
+    },
+    apiKeyLabel: 'Moonshot API key',
+  },
   custom: {
     key: 'custom',
     label: 'Custom',

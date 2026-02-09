@@ -112,6 +112,28 @@ export const PROVIDER_EDUCATION: Record<string, ProviderEducation> = {
     setupNote:
       'Install: npm i -g @musistudio/claude-code-router, run "ccr start". Configure models in ~/.claude-code-router/config.json',
   },
+  kimi: {
+    headline: 'Kimi K2.5 — Open Visual Agentic Model',
+    tagline: 'Moonlight streams, trillion-parameter reasoning',
+    features: [
+      'Kimi K2.5 for all tiers (1T MoE)',
+      '256k context window',
+      'Native multimodal (vision + code)',
+      'Moonlight-themed interface',
+    ],
+    bestFor: 'Heavy coding with massive context and multimodal capabilities',
+    models: { opus: 'kimi-k2.5', sonnet: 'kimi-k2.5', haiku: 'kimi-k2.5' },
+    requiresMapping: false,
+    hasPromptPack: false,
+    setupLinks: {
+      subscribe: 'https://platform.moonshot.ai/',
+      apiKey: 'https://platform.moonshot.ai/',
+      docs: 'https://platform.moonshot.ai/docs',
+      github: 'https://github.com/MoonshotAI/kimi-cli',
+    },
+    setupNote: 'Create a Moonshot AI account, then generate an API key from the platform console.',
+  },
+
   mirror: {
     headline: 'The Fastest Path to Claude Code',
     tagline: 'Claude Code, Unshackled',
@@ -143,7 +165,7 @@ export const getProviderEducation = (providerKey: string): ProviderEducation | n
  * Quick comparison points for provider selection
  */
 export const PROVIDER_COMPARISON = {
-  fullySupported: ['mirror', 'zai', 'minimax'],
+  fullySupported: ['mirror', 'zai', 'minimax', 'kimi'],
   requiresMapping: ['openrouter'],
   hasPromptPack: ['zai', 'minimax'],
   localFirst: ['ccrouter'],

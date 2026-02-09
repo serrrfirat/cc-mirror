@@ -35,4 +35,12 @@ export const PROVIDERS = [
     expectedSplashStyle: 'ccrouter',
     colorCode: '\\x1b[38;5;39m', // Sky blue
   },
+  {
+    key: 'kimi',
+    name: 'Kimi Cloud',
+    apiKey: 'test-kimi-key',
+    expectedThemeId: 'kimi-moonlight',
+    expectedSplashStyle: 'kimi',
+    colorCode: '\\x1b[38;5;105m', // Indigo/violet
+  },
 ];

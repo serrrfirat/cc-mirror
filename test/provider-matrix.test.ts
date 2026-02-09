@@ -93,4 +93,18 @@ test('Provider Feature Matrix', async (t) => {
     assert.ok(minimax.env.ANTHROPIC_MODEL, 'minimax should have ANTHROPIC_MODEL');
     assert.ok(minimax.env.ANTHROPIC_SMALL_FAST_MODEL, 'minimax should have ANTHROPIC_SMALL_FAST_MODEL');
   });
+
+  await t.test('kimi provider has correct config', () => {
+    const kimi = getProvider('kimi');
+    assert.ok(kimi, 'kimi provider should exist');
+    assert.equal(kimi.key, 'kimi');
+    assert.equal(kimi.label, 'Kimi Cloud');
+    assert.equal(kimi.baseUrl, 'https://api.moonshot.ai/anthropic');
+    assert.equal(kimi.authMode, undefined, 'kimi should use default apiKey auth mode');
+    assert.equal(kimi.env.ANTHROPIC_MODEL, 'kimi-k2.5');
+    assert.equal(kimi.env.ANTHROPIC_DEFAULT_SONNET_MODEL, 'kimi-k2.5');
+    assert.equal(kimi.env.ANTHROPIC_DEFAULT_OPUS_MODEL, 'kimi-k2.5');
+    assert.equal(kimi.env.ANTHROPIC_DEFAULT_HAIKU_MODEL, 'kimi-k2.5');
+    assert.equal(kimi.env.CC_MIRROR_SPLASH_STYLE, 'kimi');
+  });
 });

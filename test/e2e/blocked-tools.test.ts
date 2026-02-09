@@ -100,6 +100,48 @@ test('E2E: Blocked Tools', async (t) => {
     assert.equal(config.settings.defaultToolset, 'minimax', 'default toolset should be minimax');
   });
 
+  await t.test('kimi brand has no blocked tools', () => {
+    const rootDir = makeTempDir();
+    const binDir = makeTempDir();
+    createdDirs.push(rootDir, binDir);
+
+    core.createVariant({
+      name: 'test-kimi-blocked',
+      providerKey: 'kimi',
+      apiKey: 'test-key',
+      rootDir,
+      binDir,
+      enableTeamMode: false,
+      promptPack: false,
+      skillInstall: false,
+      noTweak: true,
+      tweakccStdio: 'pipe',
+    });
+
+    const variantDir = path.join(rootDir, 'test-kimi-blocked');
+    const configPath = path.join(variantDir, 'tweakcc', 'config.json');
+
+    assert.ok(fs.existsSync(configPath), 'tweakcc config should exist');
+
+    const config = JSON.parse(readFile(configPath));
+    const kimiToolset = config.settings?.toolsets?.find((t: { name: string }) => t.name === 'kimi');
+
+    assert.ok(kimiToolset, 'kimi toolset should exist');
+    assert.equal(kimiToolset.allowedTools, '*', 'kimi should allow all tools');
+
+    // Kimi has no blocked tools
+    const blockedTools = kimiToolset.blockedTools;
+    assert.ok(!blockedTools || blockedTools.length === 0, 'kimi should have no blocked tools');
+
+    // Verify default toolset is kimi
+    assert.equal(config.settings.defaultToolset, 'kimi', 'default toolset should be kimi');
+
+    // Verify theme
+    const theme = config.settings?.themes?.[0];
+    assert.ok(theme, 'should have at least one theme');
+    assert.equal(theme.id, 'kimi-moonlight', 'first theme should be kimi-moonlight');
+  });
+
   await t.test('team mode merges blocked tools with TodoWrite for zai', { skip: !teamModeSupported }, () => {
     const rootDir = makeTempDir();
     const binDir = makeTempDir();
